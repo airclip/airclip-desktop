@@ -1,6 +1,6 @@
 # ClipSynk
 
-Sync your clipboard/pasteboard securely between your Android, iOS, macOS, Windows and Linux devices..
+Desktop(macOS, Window and Linux) app for ClipSynk.
 
 ## Contributing
 
