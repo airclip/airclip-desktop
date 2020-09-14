@@ -1,0 +1,19 @@
+{
+  "name": "clipsynk-desktop",
+  "productName": "ClipSynk",
+  "version": "1.0.0",
+  "description": "Sync your clipboard/pasteboard securely between your Android, iOS, macOS, Windows and Linux devices.",
+  "main": "./main.prod.js",
+  "author": "Rousan Ali <hello@rousan.io> (https://rousan.io)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clipsynk/clipsynk-desktop.git"
+  },
+  "homepage": "https://clipsynk.com",
+  "scripts": {
+    "electron-rebuild": "node -r ../internals/scripts/babel-register.js ../internals/scripts/electron-rebuild.js",
+    "postinstall": "yarn electron-rebuild"
+  },
+  "license": "MIT",
+  "dependencies": {}
+}
