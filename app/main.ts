@@ -60,6 +60,7 @@ async function createMenubar() {
       fullscreenable: false,
       resizable: false,
       transparent: true,
+      frame: false,
       webPreferences: {
         backgroundThrottling: false,
         nodeIntegration: true
