@@ -67,7 +67,7 @@ async function createMenubar() {
       },
       alwaysOnTop: true
     },
-    showOnAllWorkspaces: false, // @todo: Change to true
+    showOnAllWorkspaces: !!isProd(),
     preloadWindow: true
   });
 

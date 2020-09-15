@@ -6,7 +6,8 @@ module.exports = {
     'no-console': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     'promise/always-return': 'off',
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
+    'no-param-reassign': 'off'
   },
   settings: {
     'import/resolver': {

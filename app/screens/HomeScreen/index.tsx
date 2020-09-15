@@ -14,7 +14,7 @@ const HomeScreen = () => {
     }
   }, [session]);
 
-  return <div>HomeScreen</div>;
+  return <div>HomeScressen</div>;
 };
 
 export default HomeScreen;
