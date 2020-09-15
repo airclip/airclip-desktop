@@ -1,12 +1,14 @@
 import { app, BrowserWindow } from 'electron';
+import path from 'path';
 import installExtension, {
   REDUX_DEVTOOLS,
   REACT_DEVELOPER_TOOLS
 } from 'electron-devtools-installer';
 import electronDebug from 'electron-debug';
+import { menubar, Menubar } from 'menubar';
 import { isProd, isDev } from './utils';
 
-let mainWindow: BrowserWindow | null = null;
+let mb: Menubar | null = null;
 
 (async () => {
   if (isProd()) {
@@ -26,7 +28,7 @@ let mainWindow: BrowserWindow | null = null;
     );
   }
 
-  await createMainWindow();
+  await createMenubar();
 
   app.on('window-all-closed', () => {
     // Respect the OSX convention of having the application in memory even
@@ -38,33 +40,43 @@ let mainWindow: BrowserWindow | null = null;
 
   app.on('activate', async () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      await createMainWindow();
+      await createMenubar();
     }
   });
 })().catch(err => {
   console.error(err);
 });
 
-async function createMainWindow() {
-  mainWindow = new BrowserWindow({
-    show: false,
-    width: 600,
-    height: 728,
-    webPreferences: {
-      nodeIntegration: true
+async function createMenubar() {
+  mb = menubar({
+    index: isProd()
+      ? `file://${__dirname}/app.prod.html`
+      : `file://${__dirname}/app.dev.html`,
+    icon: path.resolve(__dirname, 'assets/images/IconTemplate.png'),
+    tooltip: 'ClipSynk',
+    browserWindow: {
+      width: 350,
+      height: 460,
+      fullscreenable: false,
+      resizable: false,
+      transparent: true,
+      webPreferences: {
+        backgroundThrottling: false,
+        nodeIntegration: true
+      },
+      alwaysOnTop: true
+    },
+    showOnAllWorkspaces: false, // @todo: Change to true
+    preloadWindow: true
+  });
+
+  mb.on('after-create-window', () => {
+    if (mb && mb.window) {
+      mb.window.webContents.openDevTools({ mode: 'undocked' });
     }
   });
 
-  if (isProd()) {
-    await mainWindow.loadURL(`file://${__dirname}/app.prod.html`);
-  } else {
-    await mainWindow.loadURL(`file://${__dirname}/app.dev.html`);
-  }
-
-  mainWindow.show();
-  mainWindow.focus();
-
-  mainWindow.on('closed', () => {
-    mainWindow = null;
+  mb.on('after-close', () => {
+    mb = null;
   });
 }

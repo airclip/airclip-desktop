@@ -1,6 +1,6 @@
 # ClipSynk
 
-Desktop(macOS, Window and Linux) app for ClipSynk.
+The ClipSynk desktop app for macOS, Windows and Linux.
 
 ## Contributing
 

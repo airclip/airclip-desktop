@@ -2,10 +2,7 @@
   "compilerOptions": {
     "target": "ES2018",
     "module": "CommonJS",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "declaration": true,
     "declarationMap": true,
     "noEmit": true,
@@ -13,6 +10,7 @@
     "strict": true,
     "pretty": true,
     "sourceMap": true,
+    "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
